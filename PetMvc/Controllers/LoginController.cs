@@ -14,5 +14,10 @@ namespace PetMvc.Controllers
         {
             return View();
         }
+        [HttpGet]  //控制器
+        public ActionResult a()
+        {
+            return File(new Ddmo.VerifvCode().GetVerifvCode(), @"image/Gif");
+        }
     }
 }
