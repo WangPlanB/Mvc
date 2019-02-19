@@ -29,7 +29,7 @@
     <div class="page-content clearfix">
         <div class="alert alert-block alert-success">
             <button type="button" class="close" data-dismiss="alert"><i class="icon-remove"></i></button>
-            <i class="icon-ok green"></i>欢迎使用<strong class="green">后台管理系统<small>(v1.2)</small></strong>,你本次登录时间为2016年7月12日13时34分，登录IP:192.168.1.110.
+            <i class="icon-ok green"></i>欢迎使用<strong class="green">后台管理系统<small></small></strong>
         </div>
         <div class="state-overview clearfix">
             <div class="col-lg-3 col-sm-6">
@@ -52,7 +52,7 @@
                     </div>
                     <div class="value">
                         <h1>140</h1>
-                        <p>分销记录</p>
+                        <p>浏览记录</p>
                     </div>
                 </section>
             </div>
@@ -89,7 +89,6 @@
                         <tr><td class="name">待发货订单：</td><td class="munber"><a href="#">10</a>&nbsp;个</td></tr>
                         <tr><td class="name">待结算订单：</td><td class="munber"><a href="#">13</a>&nbsp;个</td></tr>
                         <tr><td class="name">已成交订单数：</td><td class="munber"><a href="#">26</a>&nbsp;个</td></tr>
-                        <tr><td class="name">交易失败：</td><td class="munber"><a href="#">26</a>&nbsp;个</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -106,7 +105,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="Order_Statistics">
+            @*<div class="Order_Statistics">
                 <div class="title_name">会员登录统计信息</div>
                 <table class="table table-bordered">
                     <tbody>
@@ -116,7 +115,7 @@
                         <tr><td class="name">QQ会员登录：</td><td class="munber"><a href="#">1130</a>&nbsp;次</td></tr>
                     </tbody>
                 </table>
-            </div>
+            </div>*@
             <!--<div class="t_Record">
               <div id="main" style="height:300px; overflow:hidden; width:100%; overflow:auto" ></div>
              </div> -->
@@ -151,7 +150,7 @@
                         <i class="bigger-200"><img src="~/GongJu/images/xtsz.png" /></i>
                         <h5 class="margin-top">系统设置</h5>
                     </a>
-                    <a href="Order_handling.html" title="商品订单" class="btn  btn-purple btn-sm no-radius">
+                    <a onclick="location.href='/DingDan/Index'" title="商品订单" class="btn  btn-purple btn-sm no-radius">
                         <i class="bigger-200"><img src="~/GongJu/images/icon-gwcc.png" /></i>
                         <h5 class="margin-top">商品订单</h5>
                     </a>

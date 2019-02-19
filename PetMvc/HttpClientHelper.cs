@@ -5,7 +5,6 @@ using System.Web;
 using System.Net.Http;
 using System.Net.Http.Headers;
 
-
 namespace PetMvc
 {
     public class HttpClientHelper
@@ -17,7 +16,8 @@ namespace PetMvc
         /// <param name="apiMethod">/api/admin/checklogin</param>
         /// <param name="jsonStr">返回的成功或者不成功</param>
         /// <returns></returns>
-        public static string Send(string method,string apiMethod,string jsonStr) {
+        public static string Send(string method, string apiMethod, string jsonStr)
+        {
             Uri uri = new Uri("http://localhost:52676/");
             HttpClient client = new HttpClient();
             client.BaseAddress = uri;
@@ -26,12 +26,12 @@ namespace PetMvc
             switch (method)
             {
                 case "get"://查询
-                    response=client.GetAsync(apiMethod).Result;
+                    response = client.GetAsync(apiMethod).Result;
                     break;
                 case "post"://添加
                     HttpContent content = new StringContent(jsonStr);
                     content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                    response = client.PostAsync(apiMethod,content).Result;
+                    response = client.PostAsync(apiMethod, content).Result;
                     break;
                 case "delete"://删除
                     response = client.DeleteAsync(apiMethod).Result;
@@ -49,7 +49,8 @@ namespace PetMvc
             {
                 return response.Content.ReadAsStringAsync().Result;
             }
-            else {
+            else
+            {
                 return "未知原因，失败";
             }
 
