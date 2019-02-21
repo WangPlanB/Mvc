@@ -13,9 +13,15 @@ namespace PetMvc.Controllers
         // GET: DingDan
         public ActionResult Index()
         {
-            string str = HttpClientHelper.Send("get", "api/OrderApi", "");
+            string str = HttpClientHelper.Send("get", "api/Order", "");
             List<OrderModel> list = JsonConvert.DeserializeObject<List<OrderModel>>(str);
             ViewBag.data = list;
+            return View();
+        }
+
+
+        public ActionResult Result()
+        {
             return View();
         }
      

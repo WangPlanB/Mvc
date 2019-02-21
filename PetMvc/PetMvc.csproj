@@ -164,6 +164,7 @@
     <Compile Include="GongJu\Widget\ueditor\1.4.3\net\App_Code\UploadHandler.cs" />
     <Compile Include="HttpClientHelper.cs" />
     <Compile Include="Models\OrderModel.cs" />
+    <Compile Include="Models\PetModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VerifyCode.cs" />
