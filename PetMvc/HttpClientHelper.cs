@@ -18,7 +18,7 @@ namespace PetMvc
         /// <returns></returns>
         public static string Send(string method, string apiMethod, string jsonStr)
         {
-            Uri uri = new Uri("http://localhost:52676/");
+            Uri uri = new Uri("http://localhost:49720/");
             HttpClient client = new HttpClient();
             client.BaseAddress = uri;
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));

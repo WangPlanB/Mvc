@@ -162,6 +162,7 @@
     <Compile Include="GongJu\Widget\ueditor\1.4.3\net\App_Code\PathFormater.cs" />
     <Compile Include="GongJu\Widget\ueditor\1.4.3\net\App_Code\UploadHandler.cs" />
     <Compile Include="HttpClientHelper.cs" />
+    <Compile Include="Models\OrderMassage.cs" />
     <Compile Include="Models\OrderModel.cs" />
     <Compile Include="Models\PetModel.cs" />
     <Compile Include="Models\UserModel.cs" />
@@ -169,10 +170,14 @@
     <Compile Include="VerifyCode.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\axios.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\layui.css" />
+    <Content Include="Content\layui.js" />
+    <Content Include="Content\vue.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -952,6 +957,8 @@
     <Content Include="Views\Pet\Home.cshtml" />
     <Content Include="Views\Pet\admin_info.cshtml" />
     <Content Include="Views\DingDan\Index.cshtml" />
+    <Content Include="Views\Pet\Result.cshtml" />
+    <Content Include="Views\DingDan\Home.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

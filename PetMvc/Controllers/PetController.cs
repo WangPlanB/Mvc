@@ -32,7 +32,7 @@ namespace PetMvc.Controllers
 
             foreach (var item in Orderlist)
             {
-                a = a + item.Price;
+                a = a + item.Pay;
             }
 
             foreach (var item in Orderlist)
@@ -78,15 +78,27 @@ namespace PetMvc.Controllers
         }
 
 
-        //[HttpGet]
-        //public ActionResult Add()
-        //{
+        public ActionResult Result()
+        {
+            double price = 0, price1 = 0;
+            string str = HttpClientHelper.Send("get", "api/Order", "");
+            List<OrderModel> list = JsonConvert.DeserializeObject<List<OrderModel>>(str);
 
-        //}
-        //[HttpPost]
-        //public ActionResult Add()
-        //{
+            foreach (var item in list)
+            {
+                price = price + item.Pay;
 
-        //}
+                if (item.Time.Date == DateTime.Now.Date)
+                {
+                    price1 = price1 + item.Pay;
+                }
+            }
+
+            ViewBag.price = price;
+            ViewBag.price1 = price1;
+            ViewBag.list = list;
+            ViewBag.count = list.Count();
+            return View();
+        }
     }
 }

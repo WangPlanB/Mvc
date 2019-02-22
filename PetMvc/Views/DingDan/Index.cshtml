@@ -36,11 +36,10 @@
                         <div class="widget-header header-color-green2"><h4 class="lighter smaller">订单操作</h4></div>
                         <div class="widget-body">
                             <ul class="b_P_Sort_list">
-                                <li><i class="orange  fa fa-reorder"></i><a href="#">全部订单(235)</a></li>
-                                <li><i class="fa fa-sticky-note pink "></i> <a href="#">已完成(235)</a></li>
-                                <li><i class="fa fa-sticky-note pink "></i> <a href="#">代付款(15)</a> </li>
-                                <li><i class="fa fa-sticky-note pink "></i> <a href="#">代发货(56)</a></li>
-                                <li><i class="fa fa-sticky-note pink "></i> <a href="#">代收货(32)</a></li>
+                                <li><i class="orange  fa fa-reorder"></i><a href="#">全部订单(@ViewBag.a)</a></li>
+                                <li><i class="fa fa-sticky-note pink "></i> <a href="#">已完成(@ViewBag.d)</a></li>
+                                <li><i class="fa fa-sticky-note pink "></i> <a href="#">代发货(@ViewBag.b)</a></li>
+                                <li><i class="fa fa-sticky-note pink "></i> <a href="#">代收货(@ViewBag.c)</a></li>
                             </ul>
                         </div>
                     </div>
@@ -65,8 +64,6 @@
                                     <th width="250px">产品名称</th>
                                     <th width="100px">交易金额</th>
                                     <th width="100px">交易时间</th>
-                                    <th width="180px">所属分类</th>
-                                    <th width="80px">数量</th>
                                     <th width="70px">状态</th>
                                     <th width="100px">说明</th>
                                     <th width="200px">操作</th>
@@ -77,17 +74,15 @@
                                 {
                                     <tr>
                                         <td><label><input type="checkbox" class="ace" /><span class="lbl"></span></label></td>
-                                        <td>@item.OrderNum</td>
+                                        <td>@item.OrdersId</td>
                                         <td class="order_product_name">
                                             <a href="#" class="product_Display"><img src="products/p_1.jpg" title="产品名称" /></a>
                                             <i class="fa fa-plus"></i>
                                             <a href="#" class="product_Display"><img src="products/p_2.jpg" title="产品名称" /></a>
                                         </td>
-                                        <td>@item.Price</td>
+                                        <td>@item.Pay</td>
 
                                         <td>@item.Time</td>
-                                        <td>食品</td>
-                                        <td>2</td>
                                         <td class="td-status"><span class="label label-success radius">@if (item.State == 1)
                                         {
                                             @:代发货
@@ -101,9 +96,24 @@
                                         }</span></td>
                                         <td></td>
                                         <td>
-                                            <a onClick="Delivery_stop(this,'10001')" href="javascript:;" title="发货" class="btn btn-xs btn-success"><i class="fa fa-cubes bigger-120"></i></a>
-                                            <a title="订单详细" href="order_detailed.html" class="btn btn-xs btn-info order_detailed"><i class="fa fa-list bigger-120"></i></a>
-                                            <a title="删除" href="javascript:;" onclick="Order_form_del(this,'1')" class="btn btn-xs btn-warning"><i class="fa fa-trash  bigger-120"></i></a>
+                                            @if (item.State == 1)
+                                            {
+                                                <a onClick="Delivery_stop(this,@item.OrdersId)" href="javascript:;" title="发货" class="btn btn-xs btn-success"><i class="fa fa-cubes bigger-120"></i></a>
+                                                <a title="订单详细" onclick="a(@item.OrdersId)" class="btn btn-xs btn-info order_detailed"><i class="fa fa-list bigger-120"></i></a>
+                                                <a title="删除" href="javascript:;" onclick="Order_form_del(this,'1')" class="btn btn-xs btn-warning"><i class="fa fa-trash  bigger-120"></i></a>
+                                            }
+                                            else if (item.State == 2)
+                                            {
+                                               
+                                                <a title="订单详细" onclick="a(@item.OrdersId)" class="btn btn-xs btn-info order_detailed"><i class="fa fa-list bigger-120"></i></a>
+                                                <a title="删除" href="javascript:;" onclick="Order_form_del(this,'1')" class="btn btn-xs btn-warning"><i class="fa fa-trash  bigger-120"></i></a>
+                                            }
+                                            else if (item.State == 3)
+                                            {
+                                               
+                                                <a title="订单详细" onclick="a(@item.OrdersId)" class="btn btn-xs btn-info order_detailed"><i class="fa fa-list bigger-120"></i></a>
+                                                <a title="删除" href="javascript:;" onclick="Order_form_del(this,'1')" class="btn btn-xs btn-warning"><i class="fa fa-trash  bigger-120"></i></a>
+                                            }                
                                         </td>
                                     </tr>
                                 }
@@ -146,6 +156,12 @@
     </div>
 </body>
 </html>
+<script>
+    function a(id)
+    {
+        window.location = '/DingDan/Home?Id=' + id;
+    }
+</script>
 <script>
     $(function () {
         $("#order_hand").fix({
@@ -193,13 +209,22 @@
                     })
 
                 } else {
-                    layer.confirm('提交成功！', function (index) {
-                        $(obj).parents("tr").find(".td-manage").prepend('<a style=" display:none" class="btn btn-xs btn-success" onClick="member_stop(this,id)" href="javascript:;" title="已发货"><i class="fa fa-cubes bigger-120"></i></a>');
-                        $(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已发货</span>');
-                        $(obj).remove();
-                        layer.msg('已发货!', { icon: 6, time: 1000 });
-                    });
-                    layer.close(index);
+                    $.ajax({
+                        url: "/DingDan/State?id=" + id,
+                        Type: "get",
+                        success: function (data)
+                        {
+                            layer.confirm('提交成功！', function (index) {
+                                $(obj).parents("tr").find(".td-manage").prepend('<a style=" display:none" class="btn btn-xs btn-success" onClick="member_stop(this,id)" href="javascript:;" title="已发货"><i class="fa fa-cubes bigger-120"></i></a>');
+                                $(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已发货</span>');
+                                $(obj).remove();
+                                layer.msg('已发货!', { icon: 6, time: 1000 });
+                                layer.close(index);
+                            });
+                        }
+                    })
+                   
+                   
                 }
 
             }
