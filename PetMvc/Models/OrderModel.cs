@@ -13,5 +13,6 @@ namespace PetMvc.Models
         public double Price { get; set; }
         public DateTime Time { get; set; }
         public int State { get; set; }
+        public UsersModel Users { get; set; }
     }
 }

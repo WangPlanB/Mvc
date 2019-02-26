@@ -12,6 +12,6 @@ namespace PetMvc.Models
         public string UsersPwd { get; set; }
         public string UPhone { get; set; }
         public string ULoc { get; set; }
-        public string UAuthority { get; set; }
+        public int UAuthority { get; set; }
     }
 }
